@@ -212,6 +212,9 @@ end
     @test norms[2].timeMS  == 1476072000000
     @test norms[3].timeMS  == 1428044400000
 
+    norm1 = NormalizedTimeType(norms[1], "abc", "def") # test that extra args are ignored
+    @test norm1 == norms[1]
+
     # 9. Add/subtract Dates.Period
     norm1 = NormalizedTimeType(DateTime(2016, 10, 10, 12, 34, 56, 789), TimeZone("America/New_York"))
     # 9.1. DatePeriod Month
@@ -238,10 +241,15 @@ end
     # 9.4. CompoundPeriod
     # We enclose the periods in parentheses to make it a CompoundPeriod, else left associativity of + & - will result in `norm1 + Dates.Hour(2)` being evaluated first
     norm2 = norm1 + (Dates.Hour(2) - Dates.Week(1))
+    @test norm2 < norm1
     @test norm2.tz      == TimeZone("America/New_York")
     @test norm2.timeUTC == DateTime(2016, 10, 3, 18, 34, 56, 789)
     @test norm2.timeTZ  == ZonedDateTime(2016, 10, 3, 14, 34, 56, 789, TimeZone("America/New_York"))
     @test norm2.timeMS  == 1475519696789
+
+    # 9.5. Difference between two NormalizedTimeType objects
+    diff = norm1 - norm2
+    @test diff == Dates.Week(1) - Dates.Hour(2)
 
     # 10. Converters
     @test convert(DateTime, norm1) == DateTime(2016, 10, 10, 16, 34, 56, 789)
@@ -250,4 +258,9 @@ end
 
     # 11. ZonedDateTime -> DateTime DST inner
     @test convert(DateTime, ZonedDateTime(2020, 3, 8, 7, tz"America/New_York")) == DateTime(2020, 3, 8, 7)
+end
+
+@testset "astimezone" begin
+    @test astimezone(DateTime(2020, 3, 8, 7), tz"America/New_York") == ZonedDateTime(2020, 3, 8, 3, tz"America/New_York")
+    @test astimezone(ZonedDateTime(2020, 3, 8, 7, tz"America/New_York"), tz"Asia/Kolkata") == ZonedDateTime(2020, 3, 8, 16, 30, tz"Asia/Kolkata")
 end
