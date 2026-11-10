@@ -11,10 +11,13 @@ import TimeUtilities: datetime2ms, ms2datetime, NormalizedTimeType, normalizeTim
     @test ZonedDateTime(DateTime(2021, 10, 31, 2), tz"UTC", 1) == ZonedDateTime(2021, 10, 31, 2, tz"UTC")
 
     @test ZonedDateTime(2020, 3, 8, 1, tz"America/New_York") == timestampToZonedDateTime("2020-03-08T01:00:00", tz"America/New_York")
+    @test ZonedDateTime(2020, 3, 8, 1, tz"America/New_York") == timestampToZonedDateTime("2020-03-08T01:00:00Z", tz"America/New_York")
     @test ZonedDateTime(2020, 3, 8, 1, tz"America/New_York") == timestampToZonedDateTime("2020-03-08T02:00:00", tz"America/New_York")
     @test ZonedDateTime(2020, 3, 8, 1, 10, tz"America/New_York") == timestampToZonedDateTime("2020-03-08T02:10:00", tz"America/New_York")
     @test ZonedDateTime(2020, 3, 8, 3, tz"America/New_York") == timestampToZonedDateTime("2020-03-08T03:00:00", tz"America/New_York")
     @test ZonedDateTime(2020, 3, 8, tz"America/New_York") == timestampToZonedDateTime(Date(2020, 3, 8), tz"America/New_York")
+    @test ZonedDateTime(2020, 3, 8, 1, tz"Asia/Kolkata") == timestampToZonedDateTime("2020-03-08T01:00:00+0530", tz"America/Los_Angeles")
+    @test ZonedDateTime(2020, 3, 8, 1, tz"Asia/Kathmandu") == timestampToZonedDateTime("2020-03-08T01:00:00+05:45", tz"America/Los_Angeles")
     @test :FOOBAR == timestampToZonedDateTime(:FOOBAR, tz"America/New_York")
     @test_logs (:warn, "No match for FOOBAR, returning a string") (@test "FOOBAR" == timestampToZonedDateTime("FOOBAR", tz"America/New_York"))
 
@@ -79,6 +82,7 @@ end
     @test norm.timeTZ  == ZonedDateTime(2016, 10, 10, 12, 34, 56, 789, TimeZone("America/New_York"))
     @test norm.timeMS  == 1476117296789
 
+    @test NormalizedTimeType(DateTime(2024, 4, 15)) == trunc(NormalizedTimeType(DateTime(2024, 4, 17)), Dates.Week)
 
     # normalizeTimestamps
     # 1. Simple DateTime objects
