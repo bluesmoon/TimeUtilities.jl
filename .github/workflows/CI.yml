@@ -42,6 +42,9 @@ jobs:
       - uses: julia-actions/julia-runtest@v1
       - name: Run code coverage
         if: matrix.version == 'lts' && matrix.os == 'ubuntu-latest'
-        run: julia --color=yes --project=. -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Coveralls.submit(process_folder())'
+        run: |
+          julia --color=yes --project=. -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Coveralls.submit(process_folder())';
+          curl -o README_temp.md "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/blob/$GITHUB_REF_NAME/README.md";
+          grep -Eo '<img src="[^"]+camo[^"]+"' README_temp.md | grep -Eo 'https[^"\\]+' | while read url; do curl -w "\n" -s -X PURGE $url; done
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
