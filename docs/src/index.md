@@ -19,12 +19,12 @@ Filter=f -> which(TimeUtilities, Symbol(f)) == TimeUtilities
 Private=false
 ```
 
-## Internal Methods
+## Internal Methods and Constants
 ```@autodocs
 Modules=[TimeUtilities]
-Order=[:function]
 Public=false
 ```
+
 
 ## Index
 ```@index
