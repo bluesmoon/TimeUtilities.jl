@@ -1,0 +1,4 @@
+*.cov
+*.swp
+.DS_Store
+/Manifest*.toml
