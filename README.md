@@ -1,6 +1,8 @@
 # TimeUtilities
 
 [![Build Status](https://github.com/bluesmoon/TimeUtilities.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/bluesmoon/TimeUtilities.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Coverage Status](https://coveralls.io/repos/github/bluesmoon/TimeUtilities.jl/badge.svg?branch=main)](https://coveralls.io/github/bluesmoon/TimeUtilities.jl?branch=main)
+[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://bluesmoon.github.io/TimeUtilities.jl/)
 
 ## Introduction
 
