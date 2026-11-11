@@ -1,7 +1,7 @@
 name = "TimeUtilities"
 uuid = "bfbb5731-5f0b-4668-a835-7c2d15f50cbd"
 authors = ["Philip Tellis <philip.tellis@gmail.com>"]
-version = "1.0.0-DEV"
+version = "1.0.0"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
