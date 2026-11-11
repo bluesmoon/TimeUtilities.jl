@@ -4,24 +4,22 @@
 TimeUtilities
 ```
 
-## Exported Types
+## Types
 ```@autodocs
 Modules=[TimeUtilities]
 Order=[:type]
-Private=false
 ```
 
-## Exported Methods
+## Methods
 ```@autodocs
 Modules=[TimeUtilities]
 Order=[:function]
-Filter=f -> which(TimeUtilities, Symbol(f)) == TimeUtilities
-Private=false
 ```
 
-## Internal Methods and Constants
+## Internal Constants
 ```@autodocs
 Modules=[TimeUtilities]
+Order=[:constant]
 Public=false
 ```
 

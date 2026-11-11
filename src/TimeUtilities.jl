@@ -31,7 +31,13 @@ import TimeZones: astimezone, ZonedDateTime
 export
     NormalizedTimeType,
     TimeWindowType,
-    NormalizedTimeWindowType
+    NormalizedTimeWindowType,
+    datetime2ms,
+    ms2datetime,
+    astimezone,
+    timestampToZonedDateTime,
+    normalizeTimestamps,
+    expand_legacy_timezone
 
 """
 Ordered list of `(Regex, DateFormat)` pairs for parsing timezone-naïve date/time strings.
