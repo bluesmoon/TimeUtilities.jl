@@ -83,17 +83,22 @@ Used by [`timestampToZonedDateTime`](@ref) for timezone-aware strings.
 For timezone-naïve strings see [`DATE_FORMATS`](@ref).
 """
 const DATE_FORMATS_TZ = [
-    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{1,3}[+-]\d{4}$"    , Dates.DateFormat("y-m-dTH:M:SS.sz")),
-    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}[+-]\d{2}:\d{2}$", Dates.DateFormat("yyyy-mm-ddTHH:MM:SS.ssszzzz")),
-    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{1,3} \d{4}$"       , Dates.DateFormat("y-m-dTH:M:SS.s z")),
-    (r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{1,3}[+-]\d{4}$"    , Dates.DateFormat("y-m-d H:M:SS.sz")),
-    (r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{1,3} \d{4}$"       , Dates.DateFormat("y-m-d H:M:SS.s z")),
-    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{4}$"             , Dates.DateFormat("y-m-dTH:M:SSz")),
-    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}$"       , Dates.DateFormat("y-m-dTH:M:SSzzzz")),
-    (r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}[+-]\d{4}$"             , Dates.DateFormat("y-m-d H:M:SSz")),
-    (r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}$"       , Dates.DateFormat("y-m-d H:M:SSzzzz")),
-    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} \d{4}$"                , Dates.DateFormat("y-m-dTH:M:SS z")),
-    (r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} \d{4}$"                , Dates.DateFormat("y-m-d H:M:SS z")),
+    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{1}[+-]\d{2}:?\d{2}$", Dates.DateFormat("y-m-dTH:M:S.sz")),
+    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{2}[+-]\d{2}:?\d{2}$", Dates.DateFormat("y-m-dTH:M:S.ssz")),
+    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}[+-]\d{2}:?\d{2}$", Dates.DateFormat("y-m-dTH:M:S.sssz")),
+    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{1} \d{4}$"          , Dates.DateFormat("y-m-dTH:M:S.s z")),
+    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{2} \d{4}$"          , Dates.DateFormat("y-m-dTH:M:S.ss z")),
+    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3} \d{4}$"          , Dates.DateFormat("y-m-dTH:M:S.sss z")),
+    (r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{1} \d{4}$"          , Dates.DateFormat("y-m-d H:M:S.s z")),
+    (r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{2} \d{4}$"          , Dates.DateFormat("y-m-d H:M:S.ss z")),
+    (r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3} \d{4}$"          , Dates.DateFormat("y-m-d H:M:S.sss z")),
+    (r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{1}[+-]\d{4}$"       , Dates.DateFormat("y-m-d H:M:S.sz")),
+    (r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{2}[+-]\d{4}$"       , Dates.DateFormat("y-m-d H:M:S.ssz")),
+    (r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}[+-]\d{4}$"       , Dates.DateFormat("y-m-d H:M:S.sssz")),
+    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:?\d{2}$"       , Dates.DateFormat("y-m-dTH:M:SSz")),
+    (r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}[+-]\d{2}:?\d{2}$"       , Dates.DateFormat("y-m-d H:M:SSz")),
+    (r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} \d{4}$"                 , Dates.DateFormat("y-m-dTH:M:SS z")),
+    (r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} \d{4}$"                 , Dates.DateFormat("y-m-d H:M:SS z")),
 ]
 
 """
@@ -443,7 +448,18 @@ Base.trunc(dt::DateTime, ::Type{Dates.Week}) = trunc(dt, Day) - Day(dayofweek(dt
 ### Add `Base.trunc` for NormalizedTimeType
 Base.trunc(dt::NormalizedTimeType, t::Type{<:Dates.Period}) = NormalizedTimeType(trunc(dt.timeTZ, t))
 
+"""
+A convenience type for representing a time window as a tuple of two `TimeType`s.  The first element is the start of the window, and the second element is the end of the window.
+
+Functions that accept this type decide if the window is open or closed.
+"""
 const TimeWindowType = Tuple{<:TimeType, <:TimeType}
+
+"""
+A convenience type for representing a time window as a tuple of two `NormalizedTimeType`s. The first element is the start of the window, and the second element is the end of the window.
+
+Functions that accept this type decide if the window is open or closed.
+"""
 const NormalizedTimeWindowType = Tuple{NormalizedTimeType, NormalizedTimeType}
 
 end

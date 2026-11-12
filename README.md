@@ -32,7 +32,18 @@ with Julia 1.6 and later. Its only dependencies are the built-in `Dates` module 
 
 All functions and types are documented.
 
-Only the types `NormalizedTimeType`, `TimeWindow`, and `NormalizedTimeWindow` are exported by default.
+### Exported Types
+- `NormalizedTimeType`,
+- `TimeWindowType`,
+- `NormalizedTimeWindowType`
+
+### Exported Functions
+- `normalizeTimestamps`,
+- `timestampToZonedDateTime`,
+- `datetime2ms`,
+- `ms2datetime`,
+- `expand_legacy_timezone`,
+- `astimezone`
 
 **NOTE:** This module makes guesses about intended values when datetimes end up invalid due to a daylight saving time transition.
 The standard libraries throw an exception in these cases. Make sure that this behavior is acceptable for your use case.
@@ -286,7 +297,7 @@ julia> using TimeUtilities, TimeZones
 # (clocks jump from 1:59:59 EST to 3:00:00 EDT on 2020-03-08)
 julia> dt = DateTime(2020, 3, 8, 2, 30, 0)
 julia> timestampToZonedDateTime(dt, tz"America/New_York")
-2020-03-08T03:30:00-04:00  # Automatically adjusted to most likely intended valid time
+2020-03-08T01:30:00-05:00  # Automatically adjusted to most likely intended valid time
 ```
 
 ### Vectorized Operations

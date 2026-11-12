@@ -18,6 +18,7 @@ import TimeUtilities: datetime2ms, ms2datetime, NormalizedTimeType, normalizeTim
     @test ZonedDateTime(2020, 3, 8, tz"America/New_York") == timestampToZonedDateTime(Date(2020, 3, 8), tz"America/New_York")
     @test ZonedDateTime(2020, 3, 8, 1, tz"Asia/Kolkata") == timestampToZonedDateTime("2020-03-08T01:00:00+0530", tz"America/Los_Angeles")
     @test ZonedDateTime(2020, 3, 8, 1, tz"Asia/Kathmandu") == timestampToZonedDateTime("2020-03-08T01:00:00+05:45", tz"America/Los_Angeles")
+    @test ZonedDateTime(2016, 10, 10, 12, 30, 45, 123, tz"UTC+5") == timestampToZonedDateTime("2016-10-10T12:30:45.123+0500", tz"UTC")
     @test :FOOBAR == timestampToZonedDateTime(:FOOBAR, tz"America/New_York")
     @test_logs (:warn, "No match for FOOBAR, returning a string") (@test "FOOBAR" == timestampToZonedDateTime("FOOBAR", tz"America/New_York"))
 
